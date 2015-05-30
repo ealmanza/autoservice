@@ -18,13 +18,20 @@ Route::get('home', 'HomeController@index');
 /**
  * This Route Sum Many Numbers
  */
-Route::get('/sum','OperationController@sum');
 
-Route::get('/subtraction','OperationController@subtraction');
+Route::group(['prefix'=>'operation'], function(){
 
-Route::get('/multiplication','OperationController@multiplication');
+    Route::get('/sum/{num1}/{num2}','OperationController@sum');
 
-Route::get('/divicion','OperationController@divicion');
+    Route::get('/subtraction/{num1}/{num2}','OperationController@subtraction');
+
+    Route::get('/multiplication/{num1}/{num2}','OperationController@multiplication');
+
+    Route::get('/division/{num1}/{num2}','OperationController@division');
+
+});
+
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

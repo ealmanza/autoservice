@@ -1,0 +1,1 @@
+La Suma De {!!$num1!!} y {!!$num2!!} Es {!!$total!!}

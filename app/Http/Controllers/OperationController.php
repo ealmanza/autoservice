@@ -81,24 +81,33 @@ class OperationController extends Controller {
 		//
 	}
 
-    public function sum()
+    /**
+     * @param $num1
+     * @param $num2
+     * @return \Illuminate\View\View
+     */
+    public function sum($num1,$num2)
     {
-        return "Se Esta Ejecutando La Suma";
+        $total = $num1 + $num2;
+        return view('operations.sum')->with(compact('num1','num2','total'));
     }
 
-    public function subtraction()
+    public function subtraction($num1,$num2)
     {
-        return "Se Esta Ejecutando La Resta";
+        $total = $num1 - $num2;
+        return view('operations.subtraction')->with(compact('num1','num2','total'));
     }
 
-    public function multiplication()
+    public function multiplication($num1,$num2)
     {
-        return "Se Esta Ejecutando La Multiplicación";
+        $total = $num1 * $num2;
+        return view('operations.multiplication')->with(compact('num1','num2','total'));
     }
 
-    public function divicion()
+    public function division($num1,$num2)
     {
-        return "Se Esta Ejecutando La Divición";
+        $total = $num1 / $num2;
+        return view('operations.division')->with(compact('num1','num2','total'));
     }
 
 }
