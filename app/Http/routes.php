@@ -1,5 +1,7 @@
 <?php
 
+use Autoservice\Http\Entities\County;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,7 +13,11 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+//Route::get('/', 'WelcomeController@index');
+
+Route::get('/', function(){
+    return County::all();
+});
 
 Route::get('home', 'HomeController@index');
 
