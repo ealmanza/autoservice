@@ -10,4 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class County extends Model {
 
+    public function cities(){
+        return $this->hasMany('Autoservice\Http\Entities\City');
+    }
+
+
 }

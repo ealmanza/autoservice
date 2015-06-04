@@ -1,6 +1,7 @@
 <?php
 
-use Autoservice\Http\Entities\County;
+use Autoservice\Http\Entities\City;
+use Autoservice\Http\Entities\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +14,13 @@ use Autoservice\Http\Entities\County;
 |
 */
 
-//Route::get('/', 'WelcomeController@index');
-
-Route::get('/', function(){
-    return County::all();
-});
+Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
+
+Route::resource('counties', 'CountyController');
+
+Route::resource('cities', 'CityController');
 
 /**
  * This Route Sum Many Numbers
