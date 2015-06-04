@@ -1,8 +1,5 @@
 <?php
 
-use Autoservice\Http\Entities\City;
-use Autoservice\Http\Entities\Client;
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
