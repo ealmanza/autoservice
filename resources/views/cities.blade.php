@@ -21,8 +21,8 @@
                 <td>{!! $ciudad->name !!}</td>
                 <td>{!! $ciudad->county->name !!}</td>
                 <td>
-                    <button type="button" class="btn btn-primary">Editar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
+                    <a class="btn btn-primary btn-sm" href="{{ url('/') }}/cities/{!! $ciudad->id !!}/edit" role="button">Editar</a>
+                    <a class="btn btn-danger btn-sm" href="{{ url('/') }}/cities/{!! $ciudad->id !!}/edit" role="button">Eliminar</a>
                 </td>
             </tr>
         @endforeach

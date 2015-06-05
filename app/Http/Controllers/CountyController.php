@@ -1,10 +1,8 @@
 <?php namespace Autoservice\Http\Controllers;
 
-use Autoservice\Http\Requests;
 use Autoservice\Http\Controllers\Controller;
 use Autoservice\Http\Entities\County;
-
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 
 class CountyController extends Controller {
 
@@ -28,6 +26,7 @@ class CountyController extends Controller {
 	public function create()
 	{
 		//
+        return view('createcounty');
 	}
 
 	/**
@@ -38,6 +37,8 @@ class CountyController extends Controller {
 	public function store()
 	{
 		//
+        $data = Request::all();
+        return $data;
 	}
 
 	/**
