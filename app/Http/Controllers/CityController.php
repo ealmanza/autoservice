@@ -1,5 +1,6 @@
 <?php namespace Autoservice\Http\Controllers;
 
+use Autoservice\Http\Entities\County;
 use Autoservice\Http\Requests;
 use Autoservice\Http\Controllers\Controller;
 use Autoservice\Http\Entities\City;
@@ -28,6 +29,8 @@ class CityController extends Controller {
 	public function create()
 	{
 		//
+        $county = County::all();
+        return view('createcity')->with('$county', $county);
 	}
 
 	/**

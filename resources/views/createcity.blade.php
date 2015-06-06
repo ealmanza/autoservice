@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('titulo')
-    CREAR UN NUEVO DEPARTAMENTO
+    CREAR UN NUEVO CIUDAD
 @stop
 
 @section('contenido')
@@ -19,9 +19,15 @@
                             </ul>
                         </div>
                     @endif
-                    {!! Form::open(['url' => '/counties', 'class'=>'form-horizontal']) !!}
+                    {!! Form::open(['url' => '/cities', 'class'=>'form-horizontal']) !!}
                         <div class="form-group">
-                            <label class="col-md-4 control-label"></label>
+                            <label class="col-md-4 control-label">Departamento</label>
+                            <div class="col-md-6">
+                                {!! Form::select('county_id', $county->name,['class'=>'form-control']) !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Nombre</label>
                             <div class="col-md-6">
                                 {!! Form::text('name', null,['class'=>'form-control','placeholder'=>'Departamento']) !!}
                             </div>

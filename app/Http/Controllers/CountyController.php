@@ -3,6 +3,7 @@
 use Autoservice\Http\Controllers\Controller;
 use Autoservice\Http\Entities\County;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CountyController extends Controller {
 
@@ -14,7 +15,8 @@ class CountyController extends Controller {
 	public function index()
 	{
 		//
-        $departamentos = County::all();
+        $departamentos = County::paginate(10);
+        $departamentos->setPath('/counties/');
         return view('counties')->with('departamentos', $departamentos);
 	}
 
@@ -37,8 +39,24 @@ class CountyController extends Controller {
 	public function store()
 	{
 		//
+        $messages = [
+            'required' => 'El Campo :attribute Es Requerido.',
+        ];
+
         $data = Request::all();
-        return $data;
+
+        $v = Validator::make($data,['name'=>'required'], $messages);
+
+        if ($v->fails())
+        {
+            return redirect()->back()->withErrors($v->errors());
+        }
+        else
+        {
+            $county = new County();
+            $county->name = $data['name'];
+            $county->save();
+        }
 	}
 
 	/**

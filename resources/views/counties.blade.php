@@ -26,4 +26,5 @@
             @endforeach
         </tbody>
     </table>
+    {!! $departamentos->render() !!}
 @stop
