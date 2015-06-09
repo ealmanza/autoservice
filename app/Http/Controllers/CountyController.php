@@ -16,8 +16,8 @@ class CountyController extends Controller {
 	{
 		//
         $departamentos = County::paginate(10);
-        $departamentos->setPath('/counties/');
-        return view('counties')->with('departamentos', $departamentos);
+        $departamentos->setPath('counties');
+        return view('configuration.county.index')->with('departamentos', $departamentos);
 	}
 
 	/**
@@ -28,7 +28,7 @@ class CountyController extends Controller {
 	public function create()
 	{
 		//
-        return view('createcounty');
+        return view('configuration.county.create');
 	}
 
 	/**
@@ -57,6 +57,7 @@ class CountyController extends Controller {
             $county->name = $data['name'];
             $county->save();
         }
+        return redirect()->route("counties.create");
 	}
 
 	/**
@@ -68,8 +69,6 @@ class CountyController extends Controller {
 	public function show($id)
 	{
 		//
-		$departamentos = County::find($id);
-        return view('counties')->with('departamentos', $departamentos);
 	}
 
 	/**
@@ -81,6 +80,8 @@ class CountyController extends Controller {
 	public function edit($id)
 	{
 		//
+        $county = County::findOrFail($id);
+        return view('configuration.county.update', compact('county'));
 	}
 
 	/**
@@ -92,6 +93,11 @@ class CountyController extends Controller {
 	public function update($id)
 	{
 		//
+        $data = Request::all();
+        $county = County::findOrFail($id);
+        $county->name = $data['name'];
+        $county->save();
+        return redirect()->route("county");
 	}
 
 	/**

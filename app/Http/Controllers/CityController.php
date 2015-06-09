@@ -1,11 +1,10 @@
 <?php namespace Autoservice\Http\Controllers;
 
-use Autoservice\Http\Entities\County;
-use Autoservice\Http\Requests;
 use Autoservice\Http\Controllers\Controller;
 use Autoservice\Http\Entities\City;
-
-use Illuminate\Http\Request;
+use Autoservice\Http\Entities\County;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CityController extends Controller {
 
@@ -17,8 +16,9 @@ class CityController extends Controller {
 	public function index()
 	{
 		//
-        $ciudades = City::all();
-        return view('cities')->with('ciudades', $ciudades);
+        $ciudades = City::paginate(10);
+        $ciudades->setPath('cities');
+        return view('configuration.city.index')->with('ciudades', $ciudades);
 	}
 
 	/**
@@ -29,8 +29,8 @@ class CityController extends Controller {
 	public function create()
 	{
 		//
-        $county = County::all();
-        return view('createcity')->with('$county', $county);
+        $county = County::lists('name', 'id');
+        return view('configuration.city.create')->with('county', $county);
 	}
 
 	/**
@@ -41,6 +41,29 @@ class CityController extends Controller {
 	public function store()
 	{
 		//
+        $messages = [
+            'required' => 'El Campo :attribute Es Requerido.',
+        ];
+
+        $data = Request::all();
+
+        $v = Validator::make($data,[
+            'county_id'=>'required',
+            'name'=>'required'
+        ], $messages);
+
+        if ($v->fails())
+        {
+            return redirect()->back()->withErrors($v->errors());
+        }
+        else
+        {
+            $city = new County();
+            $city->name = $data['name'];
+            $city->county_id = $data['county_id'];
+            $city->save();
+        }
+        return redirect()->route("cities.create");
 	}
 
 	/**
@@ -52,8 +75,6 @@ class CityController extends Controller {
 	public function show($id)
 	{
 		//
-        $ciudades = City::find($id);
-        return view('counties')->with('ciudades', $ciudades);
 	}
 
 	/**
@@ -65,6 +86,9 @@ class CityController extends Controller {
 	public function edit($id)
 	{
 		//
+        $city = City::findOrFail($id);
+        $county = County::lists('name', 'id');
+        return view('configuration.city.update', compact('city','county'));
 	}
 
 	/**

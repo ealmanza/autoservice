@@ -1,8 +1,11 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AutoService</title>
         <link href='{{ url('/') }}/css/bootstrap.css' rel='stylesheet' type='text/css'>
-        <!--<link href='{{ url('/') }}/css/bootstrap-theme.css' rel='stylesheet' type='text/css'>-->
+        <link href='{{ url('/') }}/css/bootstrap-theme.css' rel='stylesheet' type='text/css'>
+        <link href='{{ url('/') }}/css/theme.css' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -14,23 +17,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Project name</a>
+                    <a class="navbar-brand" href="#">AutoService</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="{!! url('/') !!}">Inicio</a></li>
+                        <li><a href="{!! url('/') !!}/counties">Departamentos</a></li>
+                        <li><a href="{!! url('/') !!}/cities">Ciudades</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
-        <div class="container">
-            <div class="starter-template">
-                <center><h1>@yield('titulo')</h1></center>
-            </div>
-            <br><br>
+        <div class="container-fluid">
             @yield('contenido')
         </div>
+        <script src="{{ url('/') }}/js/jquery-1.11.3.min.js"></script>
+        <script src="{{ url('/') }}/js/bootstrap.min.js"></script>
     </body>
 </html>

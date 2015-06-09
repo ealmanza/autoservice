@@ -16,7 +16,6 @@ Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
 
 
-
 Route::resource('counties', 'CountyController');
 
 Route::resource('cities', 'CityController');
